@@ -1,6 +1,6 @@
 # Running Camunda with LDAP Authentication + LDAP Authorization
 
-This a test that was made using LDAP users + groups to show that is possible to customize authorization using just LDAP.
+This a test that was made using LDAP users + groups to show that it's possible to customize authorization using just LDAP. All users and groups are created on LDAP without using Camunda database.
 
 You will need Docker:
 
