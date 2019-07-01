@@ -34,7 +34,6 @@ public class CustomAuthorizationApplication {
 
     plugin.setBaseDn("dc=example,dc=org");
 
-    plugin.setUserSearchBase(null);
     plugin.setUserSearchFilter("(objectclass=person)");
 
     plugin.setUserFirstnameAttribute("cn");
@@ -42,7 +41,6 @@ public class CustomAuthorizationApplication {
     plugin.setUserEmailAttribute("mail");
     plugin.setUserPasswordAttribute("userPassword");
 
-    plugin.setGroupSearchBase(null);
     plugin.setGroupSearchFilter("(objectclass=groupOfNames)");
     plugin.setGroupIdAttribute("cn");
     plugin.setGroupNameAttribute("cn");
