@@ -1,0 +1,61 @@
+dn: cn=users,dc=example,dc=org
+objectClass: groupOfNames
+cn: users
+member: uid=camunda,cn=users,dc=example,dc=org
+member: uid=steves,cn=users,dc=example,dc=org
+member: uid=william,cn=users,dc=example,dc=org
+member: uid=lucy,cn=users,dc=example,dc=org
+
+dn: cn=cockpit,dc=example,dc=org
+objectClass: groupOfNames
+cn: cockpit
+member: uid=camunda,cn=users,dc=example,dc=org
+member: uid=steves,cn=users,dc=example,dc=org
+
+dn: cn=tasklist,dc=example,dc=org
+objectClass: groupOfNames
+cn: tasklist
+member: uid=camunda,cn=users,dc=example,dc=org
+member: uid=steves,cn=users,dc=example,dc=org
+member: uid=william,cn=users,dc=example,dc=org
+member: uid=lucy,cn=users,dc=example,dc=org
+
+dn: uid=camunda,cn=users,dc=example,dc=org
+uid: camunda
+mail: camunda@example.org
+userPassword: camunda
+objectClass: inetOrgPerson
+objectClass: top
+objectClass: person
+sn: Camunda
+cn: Camunda
+
+dn: uid=steves,cn=users,dc=example,dc=org
+uid: steves
+mail: steves@example.org
+userPassword: steves
+objectClass: inetOrgPerson
+objectClass: top
+objectClass: person
+sn: Steves
+cn: Steves
+
+dn: uid=william,cn=users,dc=example,dc=org
+userPassword: william
+uid: william
+mail: william@example.org
+objectClass: inetOrgPerson
+objectClass: top
+objectClass: person
+sn: William
+cn: William
+
+dn: uid=lucy,cn=users,dc=example,dc=org
+userPassword: lucy
+uid: lucy
+mail: lucy@example.org
+objectClass: inetOrgPerson
+objectClass: top
+objectClass: person
+sn: Lucy
+cn: Lucy
