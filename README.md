@@ -2,7 +2,7 @@
 
 This a test that was made using LDAP users + groups to show that it's possible to customize authorization using just LDAP. All users and groups are created on LDAP without using Camunda database.
 
-You will need Docker:
+You will need Docker, Java and Maven:
 
 ```
 Docker version 18.06.1-ce, build e68fc7a
