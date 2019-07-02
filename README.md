@@ -2,6 +2,23 @@
 
 This a test that was made using LDAP users + groups to show that it's possible to customize authorization using just LDAP. All users and groups are created on LDAP without using Camunda database.
 
+The main goal was to customize the class `AuthorizationManager`, that verifies if a determined user is authorized to access some resources. To accomplish this task, it was needed to customize the application session factory(`LdapIdentityProviderFactory`).
+
+The class `CustomAuthorizationManager` is responsible for the authorization customization and can be used to read any attribute(and implement any rule) from LDAP.
+
+Three groups are being created on LDAP:
+
+- `users`: constains any user that has access to Camunda;
+- `cockpit`: contains any user that has access to Cockpit;
+- `tasklist`: contains any user that has access to Tasklist;
+
+Four users are being created inside these groups:
+
+- `camunda:camunda`: Camunda administrator user, with access to everything;
+- `steves:steves`: user that has access to Cockpit and Tasklist;
+- `william:william`: user that has access to Tasklist;
+- `lucy:lucy`: user that has access to Tasklist;
+
 You will need Docker, Java and Maven:
 
 ```
@@ -44,10 +61,3 @@ Docker useful commands:
 docker kill $(docker ps | grep 'openldap' | awk '{ print $1 }') 
 docker kill $(docker ps -q)
 ```
-
-Users and Groups:
-
-- `camunda`: admin, cockpit, tasklist
-- `steves`: cockpit, tasklist
-- `william`: tasklist
-- `lucy`: tasklist
