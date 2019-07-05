@@ -54,6 +54,7 @@ You can test to see if everything is fine with LDAP:
 
 ```
 docker exec -it $(docker ps | grep 'openldap' | awk '{ print $1 }') ldapsearch -x -H ldap://localhost -b dc=example,dc=org -D "cn=admin,dc=example,dc=org" -w admin
+docker exec -it $(docker ps | grep 'openldap' | awk '{ print $1 }') slapcat -n0 | grep 'olcRootDN'
 ```
 
 Docker useful commands:

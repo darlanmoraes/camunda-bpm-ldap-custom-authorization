@@ -1,7 +1,10 @@
 package org.camunda.bpm.authorization.custom;
 
+import org.camunda.bpm.engine.impl.persistence.entity.GroupEntity;
 import org.camunda.bpm.identity.impl.ldap.LdapConfiguration;
+import org.camunda.bpm.identity.impl.ldap.LdapGroupEntity;
 import org.camunda.bpm.identity.impl.ldap.LdapIdentityProviderSession;
+import org.camunda.bpm.identity.impl.ldap.LdapUserEntity;
 
 import javax.naming.NamingException;
 import javax.naming.directory.Attributes;
@@ -15,14 +18,17 @@ public class CustomLdapIdentityProviderSession extends LdapIdentityProviderSessi
 
     @Override
     public CustomLdapUserEntity transformUser(final SearchResult result) throws NamingException {
-        final Attributes attributes = result.getAttributes();
-        final CustomLdapUserEntity user = new CustomLdapUserEntity();
-        user.setDn(result.getNameInNamespace());
-        user.setId(getStringAttributeValue(ldapConfiguration.getUserIdAttribute(), attributes));
-        user.setFirstName(getStringAttributeValue(ldapConfiguration.getUserFirstnameAttribute(), attributes));
-        user.setLastName(getStringAttributeValue(ldapConfiguration.getUserLastnameAttribute(), attributes));
-        user.setEmail(getStringAttributeValue(ldapConfiguration.getUserEmailAttribute(), attributes));
-        return user;
+        final LdapUserEntity entity = super.transformUser(result);
+        return CustomLdapUserEntity.ofEntity(entity);
     }
 
+    @Override
+    protected LdapGroupEntity transformGroup(final SearchResult result) throws NamingException {
+        final GroupEntity entity = super.transformGroup(result);
+        final CustomLdapGroupEntity custom = CustomLdapGroupEntity.ofEntity(entity);
+        final Attributes attributes = result.getAttributes();
+        custom.setDn(getStringAttributeValue("dn", attributes));
+        custom.setDescription(getStringAttributeValue("description", attributes));
+        return custom;
+    }
 }

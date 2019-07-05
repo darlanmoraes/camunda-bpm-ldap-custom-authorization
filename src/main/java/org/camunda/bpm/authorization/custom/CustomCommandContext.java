@@ -6,13 +6,14 @@ import org.camunda.bpm.engine.impl.persistence.entity.AuthorizationManager;
 
 public class CustomCommandContext extends CommandContext {
 
+    private AuthorizationManager authorizationManager = new CustomAuthorizationManager();
+
     public CustomCommandContext(final ProcessEngineConfigurationImpl configuration) {
         super(configuration);
     }
 
     @Override
     public AuthorizationManager getAuthorizationManager() {
-        return new CustomAuthorizationManager();
+        return this.authorizationManager;
     }
-
 }

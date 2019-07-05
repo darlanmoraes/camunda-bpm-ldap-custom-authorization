@@ -5,20 +5,32 @@ member: uid=camunda,cn=users,dc=example,dc=org
 member: uid=steves,cn=users,dc=example,dc=org
 member: uid=william,cn=users,dc=example,dc=org
 member: uid=lucy,cn=users,dc=example,dc=org
+description: some users description
 
-dn: cn=cockpit,dc=example,dc=org
+dn: cn=managers,dc=example,dc=org
 objectClass: groupOfNames
-cn: cockpit
+cn: managers
 member: uid=camunda,cn=users,dc=example,dc=org
 member: uid=steves,cn=users,dc=example,dc=org
+description: [{ "resourceId": "cockpit", "permission": "ACCESS" },
+ { "resourceId": "tasklist", "permission": "ACCESS" },
+ { "resource": "TASK", "permission": "CREATE" },
+ { "resource": "FILTER", "permission": "CREATE" },
+ { "resource": "PROCESS_DEFINITION", "permission": "READ" },
+ { "resource": "PROCESS_DEFINITION", "permission": "UPDATE" },
+ { "resource": "PROCESS_DEFINITION", "permission": "UPDATE_INSTANCE" },
+ { "resource": "DEPLOYMENT", "permission": "READ" }]
 
-dn: cn=tasklist,dc=example,dc=org
+dn: cn=viewers,dc=example,dc=org
 objectClass: groupOfNames
-cn: tasklist
+cn: viewers
 member: uid=camunda,cn=users,dc=example,dc=org
 member: uid=steves,cn=users,dc=example,dc=org
 member: uid=william,cn=users,dc=example,dc=org
 member: uid=lucy,cn=users,dc=example,dc=org
+description: [{ "resourceId": "cockpit", "permission": "ACCESS" },
+ { "resourceId": "tasklist", "permission": "ACCESS" },
+ { "resource": "PROCESS_DEFINITION", "permission": "READ" }]
 
 dn: uid=camunda,cn=users,dc=example,dc=org
 uid: camunda

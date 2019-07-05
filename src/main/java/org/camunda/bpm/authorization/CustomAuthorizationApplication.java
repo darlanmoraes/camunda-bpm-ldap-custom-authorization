@@ -1,8 +1,10 @@
 package org.camunda.bpm.authorization;
 
+import org.camunda.bpm.authorization.custom.CustomAuthorizationManager;
 import org.camunda.bpm.authorization.custom.CustomLdapIdentityProviderPlugin;
 import org.camunda.bpm.authorization.custom.CustomProcessEnginePlugin;
 import org.camunda.bpm.engine.impl.cfg.ProcessEnginePlugin;
+import org.camunda.bpm.engine.impl.persistence.entity.AuthorizationManager;
 import org.camunda.bpm.engine.impl.plugin.AdministratorAuthorizationPlugin;
 import org.camunda.bpm.identity.impl.ldap.plugin.LdapIdentityProviderPlugin;
 import org.springframework.boot.SpringApplication;
@@ -56,6 +58,11 @@ public class CustomAuthorizationApplication {
     final AdministratorAuthorizationPlugin plugin = new AdministratorAuthorizationPlugin();
     plugin.setAdministratorUserName("camunda");
     return plugin;
+  }
+
+  @Bean
+  public AuthorizationManager authorizationManager() {
+    return new CustomAuthorizationManager();
   }
 
   public static void main(final String... args) {
